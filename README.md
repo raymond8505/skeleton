@@ -2,11 +2,14 @@ So I can hit the ground running on new projects
 
 # Client
 
-Vite with Typescript, Emotion for styles, Ant for components, Zustand for store
+1. [Vite](https://vitejs.dev/) React with Typescript
+2. [Emotion](https://emotion.sh/docs/introduction) for styles
+3. [Ant](https://ant.design/components/overview) for components
+4. [Zustand](https://github.com/pmndrs/zustand) for store
 
 # Server
 
-Node with Web Sockets connection to client
+Node with Web Socket connection to client. This is primarily for personal projects running at home, so server does not authenticate!
 
 # DB
 

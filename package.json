@@ -9,7 +9,9 @@
     "client:build": "cd ./client && tsc && vite build",
     "client:lint": "cd ./client && eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "client:preview": "cd ./client && vite preview",
-    "server:db": "cd ./db && pocketbase serve"
+    "server:db": "cd ./db && pocketbase serve",
+    "server:app": "cd ./server && node index.js",
+    "server:app:dev": "cd ./server && nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,12 @@
   },
   "homepage": "https://github.com/raymond8505/skeleton#readme",
   "dependencies": {
+    "@types/websocket": "^1.0.5",
     "pocketbase": "^0.14.0",
-    "vite": "^4.3.1"
+    "react-use-websocket": "^4.3.1",
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.15.13"
   }
 }
