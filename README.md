@@ -4,12 +4,10 @@ So I can hit the ground running on new projects
 
 1. [Vite](https://vitejs.dev/) React with Typescript
 2. [Emotion](https://emotion.sh/docs/introduction) for styles
-3. [Ant](https://ant.design/components/overview) for components
+3. [Ant](https://ant.design/components/overview) for icons and components
 4. [Zustand](https://github.com/pmndrs/zustand) for store
 
 ## Instructions
-
-
 
 # App Server
 
