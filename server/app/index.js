@@ -6,7 +6,7 @@
  * @param server:WebSocketServer
  */
 function onMessage(msg, sender, server) {
-  sender.send("hello from server");
+  sender.send("Server Connected");
   console.log("message received", msg.toString());
 }
 
