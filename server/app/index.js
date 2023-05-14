@@ -1,3 +1,4 @@
+const { startServer } = require("../index");
 /**
  * Handles all messages coming from the client. This is your entry point to your server's actual
  * functionality
@@ -29,8 +30,8 @@ function init(server) {
   });
 }
 
-module.exports = {
+startServer({
   onMessage,
   onConnection,
   init,
-};
+});
