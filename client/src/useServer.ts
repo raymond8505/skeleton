@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useWebSocket } from "react-use-websocket/dist/lib/use-websocket";
 export { ReadyState } from "react-use-websocket";
 export const useServer = (

@@ -11,14 +11,6 @@ let connectionHandler = (serverSocket) => {};
 
 let messageHandler = (msg, sender) => {};
 
-const onConnection = (cb) => {
-  connectionHandler = cb;
-};
-
-const onMessage = (cb) => {
-  messageHandler = cb;
-};
-
 const IDLength = 4;
 
 /**
@@ -210,10 +202,13 @@ const pruneConnections = () => {
  * @param {Int} port the port to listen on
  * @returns WebSocketServer
  */
-const startServer = (port = 8081) => {
+const startServer = ({ port = 8081, onMessage, onConnection }) => {
   server = new WebSocket.Server({
     port,
   });
+
+  if (onMessage) messageHandler = onMessage;
+  if (onConnection) connectionHandler = onConnection;
 
   server.on("connection", (s) => {
     pruneConnections();
@@ -257,10 +252,5 @@ const broadcastToGroup = (groupToken, action, data, except = []) => {
 
 module.exports = {
   startServer,
-  onConnection,
-  onMessage,
-  send,
   broadcastToGroup,
-  createGroup,
-  joinGroup,
 };

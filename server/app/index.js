@@ -1,4 +1,4 @@
-const { startServer } = require("../index");
+const { startServer } = require("../socket-manager");
 /**
  * Handles all messages coming from the client. This is your entry point to your server's actual
  * functionality

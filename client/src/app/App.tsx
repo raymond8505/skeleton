@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useServer } from "../useServer";
 
 export const App = () => {
-  const { sendJson } = useServer((msg) => {
-    setServerResponse(msg.data);
-  });
+  const [groupToken, setGroupToken] = useState("group id");
+  const groupField = useRef<HTMLInputElement>(null);
 
-  const [serverResponse, setServerResponse] = useState();
+  const { sendJson } = useServer((msgEvent) => {
+    const msg = JSON.parse(msgEvent.data);
+
+    switch (msg.action) {
+      case "group-created":
+        setGroupToken(msg.data.groupToken);
+        break;
+      case "new-user-joined":
+        console.log(msg);
+        break;
+    }
+  });
 
   useEffect(() => {
     sendJson({
@@ -14,5 +24,29 @@ export const App = () => {
       data: "hello",
     });
   }, []);
-  return <h1>{serverResponse}</h1>;
+  return (
+    <>
+      <button
+        onClick={() => {
+          sendJson({ action: "create-group" });
+        }}
+      >
+        create group
+      </button>
+      <div>{groupToken}</div>
+      <button
+        onClick={() => {
+          sendJson({
+            action: "join-group",
+            data: {
+              groupToken: groupField.current?.value,
+            },
+          });
+        }}
+      >
+        join group
+      </button>
+      <input type="text" ref={groupField} />
+    </>
+  );
 };
