@@ -1,4 +1,6 @@
 const { startServer } = require("../socket-manager");
+
+const connections = [];
 /**
  * Handles all messages coming from the client. This is your entry point to your server's actual
  * functionality
@@ -17,7 +19,11 @@ function onMessage(msg, sender, server) {
  * @param socket:WebSocket
  * @param server:WebSocketServer
  */
-function onConnection(socket, server) {}
+function onConnection(socket, server) {
+  connections.push(socket);
+
+  broadcast("new connection");
+}
 
 /**
  * Called before the socket server is initialized. Fires before the first connection
@@ -27,6 +33,12 @@ function onConnection(socket, server) {}
 function init(server) {
   return new Promise((resolve, reject) => {
     resolve(null);
+  });
+}
+
+function broadcast(msg) {
+  connections.forEach((socket) => {
+    socket.send(msg);
   });
 }
 

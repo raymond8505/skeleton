@@ -4,12 +4,10 @@ import { useServer, ReadyState } from "./useServer";
 import { App as InnerApp } from "./app/App";
 
 function App() {
-  const { readyState } = useServer();
-
   return (
     <ConfigProvider>
       <GlobalStyles />
-      {readyState === ReadyState.OPEN && <InnerApp />}
+      <InnerApp />
     </ConfigProvider>
   );
 }
