@@ -2,7 +2,7 @@
 const WebSocket = require("ws");
 const port = 1596;
 
-const server = new WebSocket.Server({
+let server = new WebSocket.Server({
   port,
 });
 

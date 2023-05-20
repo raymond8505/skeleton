@@ -26,9 +26,9 @@ function onConnection(socket, server) {
 let wsServer;
 
 /**
- * Called before the socket server is initialized. Fires before the first connection
+ * Called before the first connection
  * @param server:WebSocketServer
- * @returns a Promise that, when resolved, initializes the socket server
+ * @returns a Promise that, when resolved, adds the connection and message listeners
  */
 function init(server) {
   wsServer = server;
