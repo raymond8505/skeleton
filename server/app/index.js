@@ -1,6 +1,6 @@
+const { WebSocket } = require("ws");
 const { startServer } = require("../socket-manager");
 
-const connections = [];
 /**
  * Handles all messages coming from the client. This is your entry point to your server's actual
  * functionality
@@ -20,10 +20,10 @@ function onMessage(msg, sender, server) {
  * @param server:WebSocketServer
  */
 function onConnection(socket, server) {
-  connections.push(socket);
-
   broadcast("new connection");
 }
+
+let wsServer;
 
 /**
  * Called before the socket server is initialized. Fires before the first connection
@@ -31,14 +31,21 @@ function onConnection(socket, server) {
  * @returns a Promise that, when resolved, initializes the socket server
  */
 function init(server) {
+  wsServer = server;
   return new Promise((resolve, reject) => {
     resolve(null);
   });
 }
 
+/**
+ * Sends the given data to every connection
+ * @param {any} msg
+ */
 function broadcast(msg) {
-  connections.forEach((socket) => {
-    socket.send(msg);
+  wsServer.clients.forEach((client) => {
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(JSON.stringify(msg));
+    }
   });
 }
 
