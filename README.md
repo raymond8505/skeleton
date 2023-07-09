@@ -13,8 +13,27 @@ So I can hit the ground running on new projects
 
 Node with Web Socket connection to client. This is primarily for personal projects running at home, so server does not authenticate!
 
-# DB Server
+# DB Servers
 
-[Pocketbase](https://pocketbase.io/)
+## [Pocketbase](https://pocketbase.io/)
 
 grab the executable for your OS and put it in the db dir
+
+## [JSON Server](https://github.com/typicode/json-server)
+
+`client\src\hooks\useJsonServer.ts` provides basic CRUD functionality for the client
+
+See file comments for detailed usage, but I mean, like, it's a basic CRUD interface.
+
+Example
+
+```
+interface Post extends Item
+{
+    name: string
+}
+const MyItems = () => {
+    const {items,createItem,readItems,updateItem,deleteItem} = useJsonServer('posts');
+
+    return <>{(items as Post[]).map(item => <div key={item.id}>{item.name}</div>)}</div>
+```
