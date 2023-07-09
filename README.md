@@ -23,7 +23,7 @@ grab the executable for your OS and put it in the db dir
 
 `client\src\hooks\useJsonServer.ts` provides basic CRUD functionality for the client
 
-See file comments for detailed usage, but I mean, like, it's a basic CRUD interface.
+See file comments for detailed usage, but I mean like, it's a basic CRUD interface.
 
 Example
 
@@ -35,6 +35,10 @@ interface Post extends Item
 const MyItems = () => {
     const {items,createItem,readItems,updateItem,deleteItem} = useJsonServer('posts');
 
-    return <>{(items as Post[]).map(item => <div key={item.id}>{item.name}</div>)}</div>
+    return <div>
+        {(items as Post[]).map(
+            item => <div key={item.id}>{item.name}</div>
+            )}
+        </div>
 }
 ```
