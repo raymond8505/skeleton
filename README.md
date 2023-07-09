@@ -32,7 +32,7 @@ interface Post extends Item
 {
     name: string
 }
-const MyItems = () => {
+const MyPosts = () => {
     const {items,createItem,readItems,updateItem,deleteItem} = useJsonServer('posts');
 
     return <div>
