@@ -36,4 +36,5 @@ const MyItems = () => {
     const {items,createItem,readItems,updateItem,deleteItem} = useJsonServer('posts');
 
     return <>{(items as Post[]).map(item => <div key={item.id}>{item.name}</div>)}</div>
+}
 ```
