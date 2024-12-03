@@ -10,8 +10,8 @@ const headers = {
 export interface Item {
   id: number;
 }
-export function useJsonServer(endpoint: string) {
-  const [items, setItems] = useState([]);
+export function useJsonServer<T extends Item>(endpoint: string) {
+  const [items, setItems] = useState<T[]>([]);
 
   /**
    * Read all the items from the server, update the items array when done
@@ -31,8 +31,8 @@ export function useJsonServer(endpoint: string) {
    * @returns Promise<item[]>
    */
   const createItem = useCallback(
-    (item: Item) =>
-      new Promise((resolve) => {
+    (item: T) =>
+      new Promise<T>((resolve) => {
         fetch(`http://localhost:3001/${endpoint}`, {
           method: "POST",
           body: JSON.stringify(item),
@@ -66,7 +66,7 @@ export function useJsonServer(endpoint: string) {
    * @param item {Object}
    * @returns the Promise from the underlying fetch call to the server
    */
-  const updateItem = (item: Item) =>
+  const updateItem = (item: T) =>
     fetch(`http://localhost:3001/${endpoint}/${item.id}`, {
       method: "PUT",
       body: JSON.stringify(item),
