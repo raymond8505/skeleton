@@ -13,7 +13,8 @@
     "server:db": "cd ./db && pocketbase serve",
     "server:json": "json-server -p 3001 ./json/db.json",
     "server:app": "cd ./server/app && node index.js",
-    "server:app:dev": "cd ./server/app && nodemon index.js"
+    "server:app:dev": "cd ./server/app && nodemon index.js",
+    "app:install": "yarn install && cd ./client && yarn install && cd ../"
   },
   "repository": {
     "type": "git",
